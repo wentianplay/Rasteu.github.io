@@ -1,1 +1,114 @@
-404
+<div class="fade-in">
+    <h1>Welcome to the world of Fate's Light</h1>
+    <p>After reading, remember to like, collect, and review. Hahaha.</p>
+</div>
+
+<div class="container">
+    <h1>生日快乐！</h1>
+    <div id="slideshow">
+        <img src="1.jpg" alt="Image 1" class="active">
+        <img src="2.png" alt="Image 2">
+        <img src="3.png" alt="Image 3">
+    </div>
+    <p>亲爱的命运之光，</p>
+    <p>祝你生日快乐！愿你的生日充满欢乐、幸福和美好的回忆。</p>
+    <p>在这特殊的日子里，我希望你能享受每一刻，并和亲朋好友一起度过一个美好的时光。</p>
+    <p>再次祝你生日快乐！</p>
+</div>
+
+<div id="countdown">
+    <div class="time" id="days"></div>
+    <div class="time" id="hours"></div>
+    <div class="time" id="minutes"></div>
+    <div class="time" id="seconds"></div>
+</div>
+
+<script>
+    // 设置生日日期（月从0开始计数）
+    const birthday = new Date("20 08-12-15");
+
+    function updateCountdown() {
+        const now = new Date();
+        const difference = birthday - now;
+
+        // 计算剩余的天数、小时数、分钟数和秒数
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((difference / 1000 / 60) % 60);
+        const seconds = Math.floor((difference / 1000) % 60);
+
+        // 更新倒计时显示
+        document.getElementById("days").textContent = days.toString().padStart(2, "0") + "天";
+        document.getElementById("hours").textContent = hours.toString().padStart(2, "0") + "小时";
+        document.getElementById("minutes").textContent = minutes.toString().padStart(2, "0") + "分钟";
+        document.getElementById("seconds").textContent = seconds.toString().padStart(2, "0") + "秒";
+    }
+
+    // 每秒更新一次倒计时
+    setInterval(updateCountdown, 1000);
+</script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var currentIndex = 0;
+        var slides = $('#slideshow img');
+        var slideCount = slides.length;
+
+        function showSlide(index) {
+            slides.removeClass('active');
+            slides.eq(index).addClass('active');
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % slideCount;
+            showSlide(currentIndex);
+        }
+
+        // 自动播放幻灯片
+        setInterval(nextSlide, 3000);
+
+        // 初始化显示第一张幻灯片
+        showSlide(currentIndex);
+    });
+</script>
+<script>
+    function createSnowflake() {
+        const snowflake = document.createElement('div');
+        snowflake.classList.add('snowflake');
+        snowflake.style.left = Math.random() * window.innerWidth + 'px';
+        snowflake.style.animationDuration = Math.random() * 5 + 5 + 's';
+        snowflake.style.opacity = Math.random();
+        snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
+
+        const randomColor = getRandomColor();
+        snowflake.style.backgroundColor = randomColor;
+
+        snowflake.innerHTML = '生日快乐❤️'; // You can customize the snowflake symbol here
+
+        return snowflake;
+    }
+
+    function getRandomColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+
+    function snowfall() {
+        const snowContainer = document.getElementById('snow-container');
+        const numSnowflakes = 50; // Adjust the number of snowflakes here
+
+        for (let i = 0; i < numSnowflakes; i++) {
+            const snowflake = createSnowflake();
+            snowContainer.appendChild(snowflake);
+        }
+    }
+
+    snowfall();
+</script>
+</body>
+</html>
